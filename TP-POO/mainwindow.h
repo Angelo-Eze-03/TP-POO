@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <QPushButton>
+#include "documento.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,11 +31,14 @@ private slots:
 
     void on_dateEdit_userDateChanged(const QDate &date);
 
-    void on_label_linkActivated(const QString &link);
-
     void on_labelDatosPersona_linkActivated(const QString &link);
+
+    void on_botonJugar_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QLabel *labelDatosPersona;
+    QPushButton *botonJugar;
+    Documento doc;
 };
 #endif // MAINWINDOW_H

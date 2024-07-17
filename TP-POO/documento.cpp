@@ -93,6 +93,11 @@ void Documento::setAcompañantes(int newAcompañantes)
     acompañantes = newAcompañantes;
 }
 
+Documento::Documento()
+{
+
+}
+
 std::ostream& operator<<(std::ostream& os, const Documento& documento) {
     os << "Nombre: " << documento.nombre << "\n"
        << "Fecha de Nacimiento: " << documento.fechaNac << "\n"
@@ -107,7 +112,7 @@ std::ostream& operator<<(std::ostream& os, const Documento& documento) {
 
 }
 
-void Documento::LlenarNombre()
+void Documento::LlenarNombre(QLabel* label)
 {
 
     // Definición de los valores posibles para cada vector
@@ -121,6 +126,7 @@ void Documento::LlenarNombre()
 
     // Semilla para generar números aleatorios
     std::srand(std::time(nullptr));
+    QString datosPersona;
 
     // Generar 10 personas aleatoriamente
       for (int i = 0; i < 10; ++i) {
@@ -130,10 +136,15 @@ void Documento::LlenarNombre()
          const char* estadoCivil = estadosCivil[std::rand() % (sizeof(estadosCivil) / sizeof(estadosCivil[0]))];
          const char* motivoViaje = motivosViaje[std::rand() % NUM_VALUES];
          const char* paisResidencia = paisesResidencia[std::rand() % NUM_VALUES];
+
+         datosPersona += QString("Persona %1:\n").arg(i + 1);
+         datosPersona += QString("Fecha de Nacimiento: %1\n").arg(fechaNac);
+         datosPersona += QString("Nacionalidad: %1\n").arg(nacionalidad);
+         datosPersona += QString("Estado Civil: %1\n").arg(estadoCivil);
+         datosPersona += QString("Motivo del Viaje: %1\n").arg(motivoViaje);
+         datosPersona += QString("País de Residencia: %1\n\n").arg(paisResidencia);
         }
+       label->setText(datosPersona);
 }
 
-Documento::Documento()
-{
 
-}

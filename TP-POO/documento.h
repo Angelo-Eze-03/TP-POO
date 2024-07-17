@@ -1,6 +1,7 @@
 #ifndef DOCUMENTO_H
 #define DOCUMENTO_H
-
+#include <QLabel>
+#include <QString>
 #include <ostream>
 
 
@@ -56,7 +57,7 @@ class Documento
 
             friend std::ostream& operator<<(std::ostream& os, const Documento& documento);
 
-            void LlenarNombre();
+            void LlenarNombre(QLabel* label);
 
 };
 

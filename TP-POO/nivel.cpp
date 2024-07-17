@@ -64,7 +64,6 @@ bool Nivel::verificarDoc(Documento &Documento)
     if(Documento.getTipo()==4){
         return false;
     }
-
 }
 
 
