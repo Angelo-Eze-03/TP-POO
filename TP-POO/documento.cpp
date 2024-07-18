@@ -113,15 +113,18 @@ std::ostream& operator<<(std::ostream& os, const Documento& documento) {
 
 }
 
-void Documento::LlenarNombre(QLabel* label)
-{
 
+
+void Documento::GenerarPersona(QLabel* label)
+{
     // Definición de los valores posibles para cada vector
     const char* fechasNac[] = {"01/01/1980", "05/03/1990", "12/12/1975", "23/07/1985", "10/10/1992"};
     const char* nacionalidades[] = {"Argentina", "Brasil", "Chile", "Uruguay", "Paraguay"};
     const char* estadosCivil[] = {"Soltero", "Casado", "Divorciado", "Viudo"};
     const char* motivosViaje[] = {"Turismo", "Negocios", "Estudios", "Trabajo", "Visita Familiar"};
     const char* paisesResidencia[] = {"Argentina", "Brasil", "Chile", "Uruguay", "Paraguay"};
+    const char* tipos[] = {"Aldeano","Refugiado politico", "Diplomatico","Revolucionario"};
+    bool admisible;
     const int NUM_VALUES = 5;  // Número de valores en los vectores
 
 
@@ -129,14 +132,16 @@ void Documento::LlenarNombre(QLabel* label)
     std::srand(std::time(nullptr));
     QString datosPersona;
 
+
     // Generar 10 personas aleatoriamente
-     for (int i = 0; i < 1; ++i) {
+     for (int i = 0; i < 10; ++i) {
         //USAR DESPUES PARA MOSTRAR LOS DATOS POR PERSONA
          const char* fechaNac = fechasNac[std::rand() % NUM_VALUES];
          const char* nacionalidad = nacionalidades[std::rand() % NUM_VALUES];
          const char* estadoCivil = estadosCivil[std::rand() % (sizeof(estadosCivil) / sizeof(estadosCivil[0]))];
          const char* motivoViaje = motivosViaje[std::rand() % NUM_VALUES];
          const char* paisResidencia = paisesResidencia[std::rand() % NUM_VALUES];
+         const char* tipo = tipos[std::rand() % 4];
 
          datosPersona += QString("Persona %1:\n").arg(i + 1);
          datosPersona += QString("Fecha de Nacimiento: %1\n").arg(fechaNac);
@@ -145,7 +150,7 @@ void Documento::LlenarNombre(QLabel* label)
          datosPersona += QString("Motivo del Viaje: %1\n").arg(motivoViaje);
          datosPersona += QString("País de Residencia: %1\n\n").arg(paisResidencia);
     }
-    label->setText(datosPersona);
+    //label->setText(datosPersona);
 }
 
 

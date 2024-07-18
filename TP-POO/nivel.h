@@ -17,7 +17,7 @@ public:
     int getPuntos() const;
     int getMultas() const;
 
-    void calcularPuntos(Documento& Documento, bool resultadoCorrecto);
+    void calcularPuntos(Persona& persona, bool resultadoCorrecto);
     void sumarMultas();
     bool verificarDoc(Documento& Documento);
 };

@@ -14,14 +14,15 @@ class Documento
             char* nacionalidad;
             char* estadoCivil;
             char* motivoViaje;
-            int tipo;       //tipo de persona(1:aldeano,4:revolucionario, etc)
+            char* tipo;       //tipo de persona(1:aldeano,4:revolucionario, etc)
             int duracionEstadia;
             char* paisResidencia;
             int acompañantes;
+            bool admisible;
 
             char** nombres;
             //Llenadores Buenos o Correctos
-            char** FechasNacB;
+           /* char** FechasNacB;
             char** nacionalidadesB;
             char** estadosCivilB;
             char** motivosViajeB;
@@ -33,7 +34,7 @@ class Documento
             char** estadosCivilM;
             char** motivosViajeM;
             int cantidadDiaM;
-            char** paisesResidenciaM;
+            char** paisesResidenciaM;*/
     public:
             Documento();
             char *getNombre() const;
@@ -46,8 +47,6 @@ class Documento
             void setEstadoCivil(char *newEstadoCivil);
             char *getMotivoViaje() const;
             void setMotivoViaje(char *newMotivoViaje);
-            int getTipo() const;
-            void setTipo(int newTipo);
             int getDuracionEstadia() const;
             void setDuracionEstadia(int newDuracionEstadia);
             char *getPaisResidencia() const;
@@ -57,7 +56,7 @@ class Documento
 
             friend std::ostream& operator<<(std::ostream& os, const Documento& documento);
 
-            void LlenarNombre(QLabel* label);
+            void GenerarPersona(QLabel* label);
 };
 
 #endif // DOCUMENTO_H
