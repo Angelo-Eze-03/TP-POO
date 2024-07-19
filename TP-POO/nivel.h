@@ -1,25 +1,42 @@
 #ifndef NIVEL_H
 #define NIVEL_H
-#include "persona.h"
+#include "documento.h"
 
 class Nivel
 {
 private:
-    Persona** Personas;
-    int puntos=0;
-    int multas=0;
-    int nivelActual;
+    //Nivel pricipal
+    int valorNivel=1;
+    //cantidad de datos
+    const int cantDatos = 2;//deberia ir entre los corchetes pero nose porque me tira error
+    //Datos validos para verificar nivel 1
+    const char* nacionalidad[2];
+    const char* fechaNac[2];
+    const char* tipoVisita[3];
+    int duracionEstadia[5];
+
 public:
     Nivel();
-    void setNivelActual(int newNivelActual);
 
-    int getNivelActual() ;
-    int getPuntos() const;
-    int getMultas() const;
+    int getValorNivel() const;
+    void setValorNivel(int newValorNivel);
+    int getCantDatos() const;
 
-    void calcularPuntos(Persona& persona, bool resultadoCorrecto);
-    void sumarMultas();
-    bool verificarDoc(Documento& Documento);
+
+    //llenara datos correctos
+    void setNacionalidad();
+    void setFechaNac();
+    void setTipoVisita();
+    void setDuracionEstadia();
+    //devolver datos correctos
+    const char*getNacionalidad(int indice);
+    const char*getFechaNac(int indice);
+    const char*getTipoVisita(int indice);
+    int getDuracionEstadia(int nivel);
+    //Verificacion para nivel 2
+    bool verificacionNivel1(Documento documento);
+
+
 };
 
 #endif // NIVEL_H

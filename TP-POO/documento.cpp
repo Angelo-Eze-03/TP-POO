@@ -1,8 +1,5 @@
 #include "documento.h"
-#include "qlabel.h"
-#include <iostream>
-#include <ctime>
-#include <cstdlib>
+
 
 char *Documento::getNombre() const
 {
@@ -54,26 +51,16 @@ void Documento::setMotivoViaje(char *newMotivoViaje)
     motivoViaje = newMotivoViaje;
 }
 
-int Documento::getTipo() const
-{
-    return tipo;
-}
 
-void Documento::setTipo(int newTipo)
-{
-    tipo = newTipo;
-}
-
-int Documento::getDuracionEstadia() const
-{
-    return duracionEstadia;
-}
 
 void Documento::setDuracionEstadia(int newDuracionEstadia)
 {
     duracionEstadia = newDuracionEstadia;
 }
-
+int Documento::getDuracionEstadia() const
+{
+    return duracionEstadia;
+}
 char *Documento::getPaisResidencia() const
 {
     return paisResidencia;
@@ -84,14 +71,178 @@ void Documento::setPaisResidencia(char *newPaisResidencia)
     paisResidencia = newPaisResidencia;
 }
 
-int Documento::getAcompañantes() const
+
+
+bool Documento::getAcompanantes() const
 {
-    return acompañantes;
+    return acompanantes;
 }
 
-void Documento::setAcompañantes(int newAcompañantes)
+void Documento::setAcompanantes(bool newAcompanantes)
 {
-    acompañantes = newAcompañantes;
+    acompanantes = newAcompanantes;
+}
+
+char *Documento::getTipo() const
+{
+    return tipo;
+}
+
+void Documento::setTipo(char *newTipo)
+{
+    tipo = newTipo;
+}
+
+//Generadores Correctos para el nivel 1
+
+
+
+
+void Documento::setTipoVisitaC()
+{
+    char *newTiposVisitaC[3]={"Aldeano","Refugiado Politico", "Diplomatico"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->tiposVisitaC[i]=newTiposVisitaC[i];
+    }
+}
+void Documento::setNacionalidadesC()
+{
+    char *newnacionalidadesC[SIZE]={"Arngentina","Inglaterra"};//esto luego se convertira en datos de un archivo
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->nacionalidadesC[i]=newnacionalidadesC[i];
+    }
+}
+
+void Documento::setFechasNacC()
+{
+    char *newFechaNac[SIZE]={"03/03/90","03/03/01"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->fechasNacC[i]=newFechaNac[i];
+    }
+}
+
+void Documento::setDuracionEstadiaC()
+{
+   this->duracionEstadiaC[0]=3;//Maximo
+    this->duracionEstadiaC[1]=6;//Maximo
+    this->duracionEstadiaC[2]=12;//Maximo
+    this->duracionEstadiaC[3]=24;//Maximo
+    this->duracionEstadiaC[4]=48;//Maximo
+}
+
+void Documento::setEstadoCivilC()
+{
+    char *newEstadosCivilC[SIZE]={"Soltero/a","Casado/a"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->estadosCivilC[i]=newEstadosCivilC[i];
+    }
+}
+
+char *Documento::getNacionalidadesC(int indice)
+{
+    char * Nac=this->nacionalidadesC[indice];
+    return Nac;
+}
+
+char *Documento::getFechasNacC(int indice)
+{
+    return  this->fechasNacC[indice];
+}
+
+char *Documento::getTipoVisitaC(int indice)
+{
+    return this->tiposVisitaC[indice];
+}
+
+int Documento::getDuracionEstadiaC(int indice)
+{
+    return this->duracionEstadiaC[indice];
+}
+
+char *Documento::getEstadoCivilC(int indice)
+{
+    return this->estadosCivilC[indice];
+}
+
+
+//Generadores Incorrectos para el nivel 1
+void Documento::setNacionalidadesI()
+{
+     char *newNacionalidadesI[SIZE]={"Palestina","Rusia"};//esto luego se convertira en datos de un archivo
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->nacionalidadesI[i]=newNacionalidadesI[i];
+    }
+}
+
+void Documento::setFechasNacI()
+{
+    char *newFechasNacI[SIZE]={"03/03/55","03/03/53"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->fechasNacI[i]=newFechasNacI[i];
+    }
+}
+
+void Documento::setTipoVisitaI()
+{
+    this->tiposVisitaI="Revolucionario";//no puede entrar
+}
+
+void Documento::setDuracionEstadiaI()
+{
+    this->duracionEstadiaI[0]=0;//menos de un dia
+    this->duracionEstadiaI[1]=49;//mas de 48 dias
+}
+
+void Documento::setEstadoCivilI()
+{
+
+}
+
+void Documento::setDatos()//completar datos
+{
+    //nivel 1
+    setDuracionEstadiaC();
+    setDuracionEstadiaI();
+    setFechasNacC();
+    setFechasNacI();
+    setNacionalidadesC();
+    setNacionalidadesI();
+    setTipoVisitaC();
+    setTipoVisitaI();
+    setEstadoCivilC();
+    setEstadoCivilI();
+}
+
+void Documento::gnerarDocumento(int nivel)
+{
+    setDatos();
+    //en este metodo es donde surge la magia, porque podes variar en varias posibilidades
+    std::srand(std::time(nullptr));
+    if(rand()%2==0)
+        {
+            setNacionalidad(getNacionalidadesC(rand()%getCantDatos()));
+            setFechaNac(getFechasNacC(rand()%getCantDatos()));
+            setTipo(getTipoVisitaC(rand()%3));
+            setDuracionEstadia((rand()%getDuracionEstadiaC(nivel-1))+1);
+            setEstadoCivil(getEstadoCivilC(rand()%getCantDatos()));
+        }
+        else
+        {
+
+        }
+}
+
+
+
+int Documento::getCantDatos() const
+{
+    return this->cantDatos;
 }
 
 Documento::Documento()
@@ -108,7 +259,7 @@ std::ostream& operator<<(std::ostream& os, const Documento& documento) {
        << "Tipo: " << documento.tipo << "\n"
        << "Duracion de Estadia: " << documento.duracionEstadia << "\n"
        << "Pais de Residencia: " << documento.paisResidencia << "\n"
-       << "Acompanantes: " << documento.acompañantes << "\n";
+       << "Acompanantes: " << documento.acompanantes << "\n";
     return os;
 
 }

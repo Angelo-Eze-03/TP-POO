@@ -1,60 +1,115 @@
 #include "nivel.h"
-#include "persona.h"
-#include "documento.h"
 
-int Nivel::getNivelActual()
+int Nivel::getValorNivel() const
 {
-    return nivelActual;
+    return valorNivel;
 }
 
-void Nivel::setNivelActual(int newNivelActual)
+void Nivel::setValorNivel(int newValorNivel)
 {
-    nivelActual = newNivelActual;
+    valorNivel = newValorNivel;
 }
 
-int Nivel::getPuntos() const
+void Nivel::setNacionalidad()
 {
-    return puntos;
+    const char *newNcacionalidad[2]={"Arngentina","Inglaterra"};//esto luego se convertira en datos de un archivo
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->nacionalidad[i]=newNcacionalidad[i];
+    }
 }
 
-int Nivel::getMultas() const
+void Nivel::setFechaNac()
 {
-    return multas;
+    const char *newFechaNac[2]={"03/03/90","03/03/01"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->fechaNac[i]=newFechaNac[i];
+    }
 }
 
-void Nivel::calcularPuntos(Persona& persona, bool resultadoCorrecto)
+void Nivel::setTipoVisita()
 {
-    int puntosGanados = 0;
-    int puntosPerdidos = 0;
-    int multasGanadas = 0;
+    const char *newTipoVisita[3]={"Aldeano","Refugiado Politico", "Diplomatico"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->tipoVisita[i]=newTipoVisita[i];
+    }
+}
+
+void Nivel::setDuracionEstadia()
+{
+    if (getValorNivel()==1)
+    {
+        this->duracionEstadia[0]=3;
+    }
+    else if(getValorNivel()==2)
+    {
+        this->duracionEstadia[1]=6;
+    }
+    else if(getValorNivel()==3)
+    {
+        this->duracionEstadia[2]=12;
+    }
+    else if(getValorNivel()==4)
+    {
+        this->duracionEstadia[3]=24;
+    }
+    else if(getValorNivel()==5)
+    {
+        this->duracionEstadia[4]=48;
+    }
+}
+
+const char *Nivel::getNacionalidad(int indice)
+{
+    return this->nacionalidad[indice];
+}
+
+const char *Nivel::getFechaNac(int indice)
+{
+    return this->fechaNac[indice];
+}
+
+const char *Nivel::getTipoVisita(int indice)
+{
+    return this->tipoVisita[indice];
+}
+
+int Nivel::getDuracionEstadia(int nivel)
+{
+    return this->duracionEstadia[nivel];
+}
 
 
-    if (persona.getDocumento().getTipo()<4) {
-        if (persona.getDocumento().getTipo()==1) {
-
+bool Nivel::verificacionNivel1(Documento documento)
+{
+    for(int i=0; i<getCantDatos(); i++)
+    {
+        if(documento.getNacionalidad()==getNacionalidad(i) && documento.getFechaNac()==getFechaNac(i) && documento.getDuracionEstadia()<=getDuracionEstadia(getValorNivel())) //-> nose porque me tira error
+        {
+            for(int p=0; p<=3; p++)
+            {
+                if(documento.getTipo()==getTipoVisita(p))//aldeano - refugiado politico - Diplomatico
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
+    return false;
+}
+int Nivel::getCantDatos() const
+{
+    return cantDatos;
+}
 
-    if(resultadoCorrecto)
-    {
-        puntos += puntosGanados;
-    }
-    else
-    {
-        puntos -= puntosPerdidos;
-        multas += multasGanadas;
-    }
+Nivel::Nivel()
+{
 
 }
 
-/*bool Nivel::verificarDoc(Documento &Documento)
-{
-    if(Documento.getTipo()==4){
-        return false;
-    }
-
-}*/
-
-
-
-Nivel::Nivel() {}

@@ -30,7 +30,7 @@ void MainWindow::on_dateEdit_userDateChanged(const QDate &date)
 
 void MainWindow::on_buttonJugar_clicked()
 {
-    doc.LlenarNombre(labelDatosPersona);
+    doc.GenerarPersona(labelDatosPersona);
 }
 
 
