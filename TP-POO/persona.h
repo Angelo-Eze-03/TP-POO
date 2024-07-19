@@ -12,7 +12,7 @@ private:
 public:
         void crearDocumento();
         void subirNivel();
-
+        void actualizarDocumento();
         Persona();
         ~Persona();
          Documento getDocumento() ;

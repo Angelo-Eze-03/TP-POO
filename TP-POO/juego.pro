@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     documento.cpp \
+    juego.cpp \
     main.cpp \
     mainwindow.cpp \
     nivel.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     documento.h \
+    juego.h \
     mainwindow.h \
     nivel.h \
     persona.h

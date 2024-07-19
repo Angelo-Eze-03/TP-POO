@@ -35,8 +35,11 @@ public:
     int getDuracionEstadia(int nivel);
     //Verificacion para nivel 2
     bool verificacionNivel1(Documento documento);
-
-
+    bool verificacionNivel2(Documento documento);
+    bool verificacionNivel3(Documento documento);
+    bool verificacionNivel4(Documento documento);
+    bool verificacionNivelfinal(Documento documento);
+    bool verificacion(Documento documento);//contenien los 5 niveles
 };
 
 #endif // NIVEL_H

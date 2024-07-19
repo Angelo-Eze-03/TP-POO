@@ -219,7 +219,7 @@ void Documento::setDatos()//completar datos
     setEstadoCivilI();
 }
 
-void Documento::gnerarDocumento(int nivel)
+void Documento::gnerarDocumentoNivel1(int nivel)
 {
     setDatos();
     //en este metodo es donde surge la magia, porque podes variar en varias posibilidades
@@ -234,8 +234,9 @@ void Documento::gnerarDocumento(int nivel)
         }
         else
         {
-
+            //hacer exactamente el mismo procedimiento que el de arriba pero con Incorrecto
         }
+
 }
 
 

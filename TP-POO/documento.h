@@ -89,10 +89,12 @@ class Documento
 
             void setDatos();
 
-            void gnerarDocumento(int nivel);
-
-
-
+            void gnerarDocumentoNivel1(int nivel);
+            void gnerarDocumentoNivel2(int nivel);
+            void gnerarDocumentoNivel3(int nivel);
+            void gnerarDocumentoNivel4(int nivel);
+            void gnerarDocumentoNivelFinal(int nivel);
+            void gnerarDocumento(int nivel);//contiene los 5 generadores
 
 
             void GenerarPersona(QLabel* label);
