@@ -10,6 +10,7 @@ private:
         Documento documento;
         Nivel nivel;
 public:
+        //friend std::ostream& operator=(std::ostream& os, const Documento& documento);
         void crearDocumento();
         void subirNivel();
         void actualizarDocumento();

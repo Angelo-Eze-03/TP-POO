@@ -95,9 +95,6 @@ void Documento::setTipo(char *newTipo)
 
 //Generadores Correctos para el nivel 1
 
-
-
-
 void Documento::setTipoVisitaC()
 {
     char *newTiposVisitaC[3]={"Aldeano","Refugiado Politico", "Diplomatico"};
@@ -108,7 +105,7 @@ void Documento::setTipoVisitaC()
 }
 void Documento::setNacionalidadesC()
 {
-    char *newnacionalidadesC[SIZE]={"Arngentina","Inglaterra"};//esto luego se convertira en datos de un archivo
+    char *newnacionalidadesC[SIZE]={"Arngentino/a","Ingles/a"};
     for (int i=0; i<getCantDatos(); i++)
     {
         this->nacionalidadesC[i]=newnacionalidadesC[i];
@@ -172,7 +169,7 @@ char *Documento::getEstadoCivilC(int indice)
 //Generadores Incorrectos para el nivel 1
 void Documento::setNacionalidadesI()
 {
-     char *newNacionalidadesI[SIZE]={"Palestina","Rusia"};//esto luego se convertira en datos de un archivo
+     char *newNacionalidadesI[SIZE]={"Palestina/o","Ruso/a"};//esto luego se convertira en datos de un archivo
     for (int i=0; i<getCantDatos(); i++)
     {
         this->nacionalidadesI[i]=newNacionalidadesI[i];
@@ -201,8 +198,38 @@ void Documento::setDuracionEstadiaI()
 
 void Documento::setEstadoCivilI()
 {
-
+    char *newEstadosCivilI[SIZE]={"Viudo/a","Divorciado/a"};
+    for (int i=0; i<getCantDatos(); i++)
+    {
+        this->estadosCivilI[i]=newEstadosCivilI[i];
+    }
 }
+
+char *Documento::getNacionalidadesI(int indice)
+{
+    return this->nacionalidadesI[indice];
+}
+
+char *Documento::getFechasNacI(int indice)
+{
+    return this->fechasNacI[indice];
+}
+
+char *Documento::getTipoVisitaI()
+{
+    return this->tiposVisitaI;
+}
+
+int Documento::getDuracionEstadiaI(int indice)
+{
+    return this->duracionEstadiaI[indice];
+}
+
+char *Documento::getEstadoCivilI(int indice)
+{
+    return this->estadosCivilI[indice];
+}
+
 
 void Documento::setDatos()//completar datos
 {
@@ -224,6 +251,7 @@ void Documento::gnerarDocumentoNivel1(int nivel)
     setDatos();
     //en este metodo es donde surge la magia, porque podes variar en varias posibilidades
     std::srand(std::time(nullptr));
+
     if(rand()%2==0)
         {
             setNacionalidad(getNacionalidadesC(rand()%getCantDatos()));
@@ -234,8 +262,39 @@ void Documento::gnerarDocumentoNivel1(int nivel)
         }
         else
         {
-            //hacer exactamente el mismo procedimiento que el de arriba pero con Incorrecto
+            setNacionalidad(getNacionalidadesI(rand()%getCantDatos()));
+            setFechaNac(getFechasNacI(rand()%getCantDatos()));
+            setTipo(getTipoVisitaI());
+            if(rand()%2==0)
+            {
+                setDuracionEstadia(0);
+            }
+            else
+            {
+                setDuracionEstadia((rand()%getDuracionEstadiaI(1))+(rand()%100));
+            }
+            setEstadoCivil(getEstadoCivilI(rand()%getCantDatos()));
         }
+
+}
+
+void Documento::gnerarDocumentoNivel2(int nivel)
+{
+
+}
+
+void Documento::gnerarDocumentoNivel3(int nivel)
+{
+
+}
+
+void Documento::gnerarDocumentoNivel4(int nivel)
+{
+
+}
+
+void Documento::gnerarDocumentoNivelFinal(int nivel)
+{
 
 }
 

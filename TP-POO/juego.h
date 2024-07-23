@@ -9,7 +9,7 @@ class Juego
 public:
     Juego();
     ~Juego();
-    //friend std::ostream& operator=(std::ostream& os, const Documento& documento);
+
     int getPuntos() ;
     void setPuntos(int newPuntos);
     const Persona &getPersona() const;

@@ -23,13 +23,13 @@ class Documento
             int duracionEstadia;
             char* paisResidencia;
             bool acompanantes;
-            bool admisible;
+            //bool admisible;
 
             //cantidad de datos
             const int cantDatos = SIZE;//deberia ir entre los corchetes pero nose porque me tira error
 
             //Generadores de documentacion correcta
-             char* nombresC[SIZE];
+             char* nombresC[SIZE];//falta
              char* fechasNacC[SIZE];
              char* nacionalidadesC[SIZE];
              char* estadosCivilC[SIZE];
@@ -38,7 +38,7 @@ class Documento
                    int duracionEstadiaC[5];
              const char* paisesResidenciaC[SIZE];
             //Generadores de documentacion Incorrecta
-              char* nombresI[SIZE];
+              char* nombresI[SIZE];//falta
               char* fechasNacI[SIZE];
               char* nacionalidadesI[SIZE];
               char* estadosCivilI[SIZE];
@@ -65,27 +65,62 @@ class Documento
 
             friend std::ostream& operator<<(std::ostream& os, const Documento& documento);
             //Generador de datos correctos nivel 1
+
             void setNacionalidadesC();
             void setFechasNacC();
             void setTipoVisitaC();
             void setDuracionEstadiaC();
             void setEstadoCivilC();
+
             char * getNacionalidadesC(int indice);
             char * getFechasNacC(int indice);
             char * getTipoVisitaC(int indice);
             int  getDuracionEstadiaC(int indice);
             char * getEstadoCivilC(int indice);
+            //Generador de datos correctos nivel 2
+            void setPaisResidenciaC();
+            void setPropositoViajeC();
+            char * getPaisResidenciaC(int indice);
+            char * getPropositoViajeC(int indice);
+            //Generador de datos correctos nivel 3
+            //en este caso solo es un dato que creo que no afectaria al desarrollo,
+            // a no ser que el acompañante no cumpla con los requisitos de entrada
+
+            //Generador de datos correctos nivel 4
+            void setNombreC();
+            char * getNombreC(int indice);
+            //Generador de datos correctos nivel final
+
             //Generador de datos Incorrectos nivel 1
+
             void setNacionalidadesI();
             void setFechasNacI();
             void setTipoVisitaI();
             void setDuracionEstadiaI();
             void setEstadoCivilI();
-            char * getNacionalidadesI();
-            char * getFechasNacI();
+
+            char * getNacionalidadesI(int indice);
+            char * getFechasNacI(int indice);
             char * getTipoVisitaI();
-            int    getDuracionEstadiaI();
-            char * getEstadoCivilI();
+            int    getDuracionEstadiaI(int indice);
+            char * getEstadoCivilI(int indice);
+            //Generador de datos Incorrectos nivel 2
+            void setPaisResidenciaI();
+            void setPropositoViajeI();
+            char * getPaisResidenciaI(int indice);
+            char * getPropositoViajeI(int indice);
+            //Generador de datos Incorrectos nivel 3
+            //en este caso solo es un dato que creo que no afectaria al desarrollo,
+            // a no ser que el acompañante no cumpla con los requisitos de entrada
+
+
+            //Generador de datos Incorrectos nivel 4
+             void setNombreI();
+             char * getNombreI(int indice);
+            //Generador de datos Incorrectos nivel final
+
+
+
 
             void setDatos();
 

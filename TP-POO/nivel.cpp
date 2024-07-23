@@ -12,7 +12,7 @@ void Nivel::setValorNivel(int newValorNivel)
 
 void Nivel::setNacionalidad()
 {
-    const char *newNcacionalidad[2]={"Arngentina","Inglaterra"};//esto luego se convertira en datos de un archivo
+    const char *newNcacionalidad[2]={"Arngentino/a","Ingles/a"};//esto luego se convertira en datos de un archivo
     for (int i=0; i<getCantDatos(); i++)
     {
         this->nacionalidad[i]=newNcacionalidad[i];
